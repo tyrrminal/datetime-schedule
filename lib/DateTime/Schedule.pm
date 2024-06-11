@@ -1,6 +1,8 @@
 package DateTime::Schedule;
 use v5.26;
 
+# ABSTRACT: Determine scheduled days in range based on inclusions/exclusions
+
 use Object::Pad;
 
 class DateTime::Schedule {

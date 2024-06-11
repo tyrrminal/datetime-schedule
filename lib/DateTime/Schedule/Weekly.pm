@@ -1,6 +1,8 @@
 package DateTime::Schedule::Weekly;
 use v5.26;
 
+# ABSTRACT: Augment DateTime::Schedule with a weekly recurrrence pattern
+
 use Object::Pad;
 
 class DateTime::Schedule::Weekly {
