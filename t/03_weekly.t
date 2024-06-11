@@ -30,11 +30,29 @@ is($dts->days_in_range($start, plus_one_hundred_days)->count, 30, 'one hundred d
 
 # ==============================================================================
 
+$dts = DateTime::Schedule::Weekly->weekends(monday => 1);
+
+is($dts->days_in_range($start, plus_one_day)->count, 1, 'one day, weekends, plus mondays');
+is($dts->days_in_range($start, plus_three_days)->count, 3, 'three days, weekends, plus mondays');
+is($dts->days_in_range($start, plus_one_week)->count, 3, 'one week, weekends, plus mondays');
+is($dts->days_in_range($start, plus_one_hundred_days)->count, 44, 'one hundred days, weekends, plus mondays');
+
+# ==============================================================================
+
 $dts = DateTime::Schedule::Weekly->weekdays();
 
-is($dts->days_in_range($start, plus_one_day)->count, 0, 'one day, weekends');
-is($dts->days_in_range($start, plus_three_days)->count, 1, 'three days, weekends');
-is($dts->days_in_range($start, plus_one_week)->count, 5, 'one week, weekends');
-is($dts->days_in_range($start, plus_one_hundred_days)->count, 70, 'one hundred days, weekends');
+is($dts->days_in_range($start, plus_one_day)->count, 0, 'one day, weekdays');
+is($dts->days_in_range($start, plus_three_days)->count, 1, 'three days, weekdays');
+is($dts->days_in_range($start, plus_one_week)->count, 5, 'one week, weekdays');
+is($dts->days_in_range($start, plus_one_hundred_days)->count, 70, 'one hundred days, weekdays');
+
+# ==============================================================================
+
+$dts = DateTime::Schedule::Weekly->weekdays(monday => 0);
+
+is($dts->days_in_range($start, plus_one_day)->count, 0, 'one day, weekdays, except mondays');
+is($dts->days_in_range($start, plus_three_days)->count, 0, 'three days, weekdays, except mondays');
+is($dts->days_in_range($start, plus_one_week)->count, 4, 'one week, weekdays, except mondays');
+is($dts->days_in_range($start, plus_one_hundred_days)->count, 56, 'one hundred days, weekdays, except mondays');
 
 done_testing;
